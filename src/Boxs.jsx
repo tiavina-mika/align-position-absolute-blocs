@@ -1,10 +1,12 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "@emotion/react";
+import { cmToPx, zoom } from "./utils/utils";
 
+const SPACING = 20;
 const template = {
-  width: 75,
-  height: 75,
+  width: 10,
+  height: 10,
   backgroundColor: "red"
 };
 
@@ -17,20 +19,23 @@ const classes = {
     borderRadius: 15,
     position: "relative"
   },
-  bundledTemplate: (template, index) => ({
-    height: template.height,
-    width: template.width,
-    position: "absolute",
-    top: index > 5 ? template.height + 10 : 0,
-    left:
-      index >= 5
-        ? (template.width + 10) * (index - 6)
-        : (template.width + 10) * index,
-    backgroundColor:
-      template.backgroundColor === "transparent"
-        ? "#fff"
-        : template.backgroundColor
-  })
+  bundledTemplate: (template, index) => {
+    const width = cmToPx(template.width);
+    const height = cmToPx(template.height);
+    return {
+      height: zoom(template, height),
+      width: zoom(template, width),
+      position: "absolute",
+      // top: index > 6 ? zoom(template, cmToPx(template.height * index)) : 0,
+      // left: index <= 6 ? zoom(template, cmToPx(template.width * index)) : 0,
+      top: index > 5 ? zoom(template, height + SPACING) : 0,
+      left: zoom(template, (width + SPACING) * (index - (index >= 5 ? 6 : 0))),
+      backgroundColor:
+        template.backgroundColor === "transparent"
+          ? "#fff"
+          : template.backgroundColor
+    };
+  }
 };
 
 const Boxes = () => {
