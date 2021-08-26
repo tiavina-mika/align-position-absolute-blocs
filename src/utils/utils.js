@@ -30,7 +30,7 @@ export const zoom2 = (size, value = 0.4) => {
 };
 
 export const zoom = (template, size) => {
-  const value = 200 / cmToPx(template.width);
+  const value = 100 / cmToPx(template.width);
   // const value = 579 / cmToPx(template.width);
   return `calc(${size * value}px)`;
 };
