@@ -3,7 +3,8 @@
 import { jsx } from "@emotion/react";
 import { cmToPx, zoom } from "./utils/utils";
 
-const SPACING = 20;
+const SPACING = 50; // in cm
+const TEMPLATE_PER_LINE = 4;
 const template = {
   width: 10,
   height: 10,
@@ -28,8 +29,14 @@ const classes = {
       position: "absolute",
       // top: index > 6 ? zoom(template, cmToPx(template.height * index)) : 0,
       // left: index <= 6 ? zoom(template, cmToPx(template.width * index)) : 0,
-      top: index > 5 ? zoom(template, height + SPACING) : 0,
-      left: zoom(template, (width + SPACING) * (index - (index >= 5 ? 6 : 0))),
+      top: index > TEMPLATE_PER_LINE ? zoom(template, height + SPACING) : 0,
+      left:
+        index > TEMPLATE_PER_LINE
+          ? zoom(
+              template,
+              (width + SPACING) * (index - (TEMPLATE_PER_LINE + 1))
+            )
+          : zoom(template, (width + SPACING) * index + 1),
       backgroundColor:
         template.backgroundColor === "transparent"
           ? "#fff"
@@ -41,7 +48,7 @@ const classes = {
 const Boxes = () => {
   return (
     <div css={classes.frame} className="flexRow">
-      {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((val, index) => (
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((val, index) => (
         <div key={index} css={classes.bundledTemplate(template, index)}>
           {val}
         </div>
