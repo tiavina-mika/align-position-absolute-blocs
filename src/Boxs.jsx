@@ -37,10 +37,7 @@ const classes = {
               (width + SPACING) * (index - (TEMPLATE_PER_LINE + 1))
             )
           : zoom(template, (width + SPACING) * index + 1),
-      backgroundColor:
-        template.backgroundColor === "transparent"
-          ? "#fff"
-          : template.backgroundColor
+      backgroundColor: template.backgroundColor
     };
   }
 };
