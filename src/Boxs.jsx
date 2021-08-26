@@ -33,7 +33,7 @@ const classes = {
   })
 };
 
-const Box = () => {
+const Boxes = () => {
   return (
     <div css={classes.frame} className="flexRow">
       {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((val, index) => (
@@ -45,4 +45,4 @@ const Box = () => {
   );
 };
 
-export default Box;
+export default Boxes;
