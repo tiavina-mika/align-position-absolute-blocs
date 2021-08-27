@@ -5,13 +5,13 @@ import "antd/dist/antd.css";
 
 import theme from "./styles/theme";
 import { globalStyles } from "./styles/styles";
-import Boxs from "./Boxs";
+import Boxes from "./Boxes";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       {globalStyles}
-      <Boxs />
+      <Boxes />
     </ThemeProvider>
   );
 };
